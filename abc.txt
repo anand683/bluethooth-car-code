@@ -1,0 +1,47 @@
+
+
+#include <AFMotor.h>
+
+char t;
+// DC motor on M2
+AF_DCMotor motor(3);
+AF_DCMotor motor1(4);
+
+void setup() {
+  Serial.begin(9600);           
+  Serial.println("Motor party!");
+  motor.setSpeed(255);
+  motor.run(RELEASE);
+    motor1.setSpeed(255);
+  motor1.run(RELEASE);
+}
+void loop(){
+if(Serial.available()){
+  t = Serial.read();
+  Serial.println(t);
+}
+ 
+if(t == '1'){            
+ motor.run(FORWARD);
+ motor1.run(FORWARD);
+}
+ 
+else if(t == '2'){     
+  motor.run(RELEASE);
+   motor1.run(RELEASE);
+}
+ 
+else if(t == '3'){     
+motor.run(BACKWARD);
+motor1.run(BACKWARD);
+}
+ 
+else if(t == '4'){      
+  motor.run(FORWARD);
+  motor1.run(BACKWARD);
+}
+}
+
+ 
+
+
